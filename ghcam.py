@@ -4,6 +4,7 @@ import sched, time, datetime
 from picamera import PiCamera
 import StringIO
 import base64
+from config import writerpwd
 
 camera = PiCamera()
 
@@ -20,7 +21,7 @@ def take_photo(sc):
 	imgblob = MySQLdb.escape_string(base64.b64encode(img.getvalue()))
 
 	now = datetime.datetime.now()
-	db = MySQLdb.connect(host='localhost',user='Greenhouse.Writer',passwd='97ad48e2298fbeb9', db='Greenhouse')
+	db = MySQLdb.connect(host='localhost',user='Greenhouse.Writer',passwd=writerpwd, db='Greenhouse')
 	dbc = db.cursor()
 	sql = "INSERT INTO Greenhouse.Readings (ReadingTimestamp, ReadingPhoto)"
 	sql += "VALUES ('%s','%s');" % (now.strftime('%Y-%m-%d %H:%M:%S') ,imgblob)

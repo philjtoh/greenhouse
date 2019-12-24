@@ -4,6 +4,7 @@ import io
 import datetime
 import sys
 import base64
+from config import readerpwd
 
 limit = None
 
@@ -13,7 +14,7 @@ if len(sys.argv) > 1:
 else:
 	print ("doing all photos...")
 
-db = MySQLdb.connect(host='localhost',user='Greenhouse.Reader',passwd='e463daea5f91438a', db='Greenhouse')
+db = MySQLdb.connect(host='localhost',user='Greenhouse.Reader',passwd=readerpwd, db='Greenhouse')
 dbc = db.cursor()
 
 #start with the oldest photo

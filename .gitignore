@@ -1,4 +1,5 @@
 frames/*
 videos/*
 .cache/*
-
+config.py
+web/config.py

@@ -1,7 +1,7 @@
-print ('hello')
 import Adafruit_DHT
 import MySQLdb
 import sched, time, datetime
+from config import writerpwd
 
 delay = 600
 
@@ -13,7 +13,7 @@ def take_reading(sc):
 		cputemp = float(cputempfile.read()) / 1000
 
 	now = datetime.datetime.now()
-	db = MySQLdb.connect(host='localhost',user='Greenhouse.Writer',passwd='97ad48e2298fbeb9', db='Greenhouse')
+	db = MySQLdb.connect(host='localhost',user='Greenhouse.Writer',passwd=writerpwd, db='Greenhouse')
 	dbc = db.cursor()
 	sql = "INSERT INTO Greenhouse.Readings (ReadingTimestamp, ReadingAirTemp, ReadingHumidity, ReadingCPUTemp)"
 	sql += "VALUES ('%s', %.2f, %.2f, %.2f);" % (now.strftime('%Y-%m-%d %H:%M:%S') ,airtemp, humidity, cputemp)

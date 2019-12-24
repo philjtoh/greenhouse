@@ -4,6 +4,7 @@
 import cgitb
 import MySQLdb
 import datetime
+from congig import readerpwd
 
 cgitb.enable()
 
@@ -16,7 +17,7 @@ hdg = "LATEST PHOTO"
 
 print ("<h1>%s</h1>" % (hdg))
 
-db = MySQLdb.connect(host='localhost',user='Greenhouse.Reader',passwd='e463daea5f91438a', db='Greenhouse')
+db = MySQLdb.connect(host='localhost',user='Greenhouse.Reader',passwd=readerpwd, db='Greenhouse')
 dbc = db.cursor()
 sql = "SELECT ReadingPhoto, ReadingTimestamp FROM Greenhouse.Readings WHERE ReadingPhoto IS NOT NULL ORDER BY ReadingTimestamp DESC LIMIT 1;"
 #sql = "SELECT ReadingAirTemp FROM Greenhouse.Readings ORDER BY ReadingTimestamp DESC LIMIT 10;"

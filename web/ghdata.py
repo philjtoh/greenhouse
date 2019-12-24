@@ -4,6 +4,7 @@
 import cgitb
 import MySQLdb
 import datetime
+from config import readerpwd
 
 cgitb.enable()
 
@@ -16,7 +17,7 @@ hdg = "LAST 40 READINGS"
 
 print ("<h1>%s</h1>" % (hdg))
 
-db = MySQLdb.connect(host='localhost',user='Greenhouse.Reader',passwd='e463daea5f91438a', db='Greenhouse')
+db = MySQLdb.connect(host='localhost',user='Greenhouse.Reader',passwd=readerpwd, db='Greenhouse')
 dbc = db.cursor()
 sql = "SELECT ReadingAirTemp, ReadingCPUTemp, ReadingHumidity, ReadingTimestamp FROM Greenhouse.Readings WHERE ReadingAirTemp IS NOT NULL ORDER BY ReadingTimestamp DESC LIMIT 40;"
 #sql = "SELECT ReadingAirTemp FROM Greenhouse.Readings ORDER BY ReadingTimestamp DESC LIMIT 10;"
