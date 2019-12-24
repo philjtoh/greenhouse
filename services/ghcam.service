@@ -1,0 +1,19 @@
+[Unit]
+
+Description=Greenhouse photo
+
+[Service]
+
+Type=simple
+StandardError=syslog
+WorkingDirectory=/usr/src/greenhouse
+User=greenhouse
+Group=greenhouse
+Restart=on-failure
+RestartSec=20 5
+ExecStart=/usr/bin/python ghcam.py
+
+[Install]
+
+WantedBy=multi-user.target
+
